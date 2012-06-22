@@ -30,7 +30,7 @@ case class Transaction(
 }
 
 object Transaction extends ModelCompanion[Transaction, ObjectId] {
-  val collection = mongoCollection("users")
+  val collection = mongoCollection("transactions")
   val dao = new SalatDAO[Transaction, ObjectId](collection = collection) {}
 
   def findByUser(userId: ObjectId) =
