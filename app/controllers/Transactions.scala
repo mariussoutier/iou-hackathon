@@ -6,6 +6,10 @@ import play.api.data.Forms._
 import play.api.data._
 
 import play.api.libs.json._
+import play.api.libs.json.Json._
+import json.Formats._
+
+import se.radley.plugin.salat._
 
 import com.mongodb.casbah.Imports._
 
@@ -24,7 +28,9 @@ object Transactions extends Controller {
         )
       )
 
-    Ok(Json.toJson(Map("transactions" -> JsArray(transactionsJs))))
+    Ok(JsObject(Seq("transactions" -> JsArray(transactionsJs))))
   }
 
 }
+
+//

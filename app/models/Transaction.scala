@@ -10,6 +10,7 @@ import se.radley.plugin.salat._
 import scala.math._
 
 import play.api.libs.json._
+import json.Formats._
 
 // 'from' gives money to 'to'
 case class Transaction(
