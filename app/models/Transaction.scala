@@ -17,7 +17,7 @@ case class Transaction(
   id: ObjectId = new ObjectId,
   subject: String,
   amount: BigDecimal,
-  currency: String = "€",
+  currency: String = "EUR",
   from: ObjectId,
   to: ObjectId,
   created: java.util.Date = new java.util.Date,
