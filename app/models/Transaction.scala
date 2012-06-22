@@ -2,9 +2,9 @@ package models
 
 import play.api.Play.current
 
-import com.novus.salat.dao._
 import com.mongodb.casbah.Imports._
 import se.radley.plugin.salat._
+import com.novus.salat.dao._
 
 import scala.math._
 

@@ -9,9 +9,8 @@ import play.api.libs.json._
 import play.api.libs.json.Json._
 import json.Formats._
 
-import se.radley.plugin.salat._
-
 import com.mongodb.casbah.Imports._
+import se.radley.plugin.salat._
 
 import models._
 
@@ -23,7 +22,7 @@ object Transactions extends Controller {
       others.toSeq.map(otherId =>
         JsObject(Seq(
           ("userId", JsString(otherId.toString)),
-          ("userName", JsString("TODO")),
+          ("userName", JsString(User.findOneById(otherId).map(_.fullName).getOrElse(""))),
           ("totalAmount", JsNumber(Transaction.totalAmount(id, otherId))))
         )
       )
@@ -37,5 +36,3 @@ object Transactions extends Controller {
   }
 
 }
-
-//
