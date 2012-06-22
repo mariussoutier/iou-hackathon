@@ -27,7 +27,7 @@ object Transactions extends Controller {
           ("totalAmount", JsNumber(Transaction.totalAmount(id, otherId))))
         )
       )
-    Ok(JsObject(Seq("transactions" -> JsArray(transactionsJs))))
+    Ok(JsObject(Seq("summaries" -> JsArray(transactionsJs))))
   }
 
   def txForIds(user1: ObjectId, user2: ObjectId) = Action { implicit request =>
