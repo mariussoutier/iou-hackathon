@@ -21,9 +21,9 @@ case class Transaction(
   from: ObjectId,
   to: ObjectId,
   created: java.util.Date = new java.util.Date,
-  longitude: Option[Double],
-  latitude: Option[Double],
-  locationName: Option[String]
+  longitude: Option[Double] = None,
+  latitude: Option[Double] = None,
+  locationName: Option[String] = None
 ) {
   def fromUser: Option[User] = User.findOneById(from)
   def toUser: Option[User] = User.findOneById(to)

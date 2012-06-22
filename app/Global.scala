@@ -19,6 +19,34 @@ object Global extends GlobalSettings {
         phone = Some("0180-1234567")
       ))
     }
+
+    if (Transaction.count() == 0) {
+      val otherUser = User(
+        email = Some("girlfriend@somewhere.com"),
+        firstName = Some("Uschi"),
+        lastName = Some("München"),
+        phone = Some("0161-12123939123")
+      )
+      User.save(otherUser)
+
+      User.findByEMail("dummy@somewhere.com").map { dummyUser =>
+        // Add some dummy tx
+        val tx1 = Transaction(
+          subject = "Bier",
+          amount = BigDecimal(3.00),
+          from = dummyUser.id,
+          to = otherUser.id
+        )
+        Transaction.save(tx1)
+        val tx2 = Transaction(
+          subject = "Restaurant",
+          amount = BigDecimal(55.00),
+          from = dummyUser.id,
+          to = otherUser.id
+        )
+        Transaction.save(tx2)
+      }
+    }
   }
 
 }

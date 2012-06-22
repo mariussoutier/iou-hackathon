@@ -27,9 +27,10 @@ object Transactions extends Controller {
           ("totalAmount", JsNumber(Transaction.totalAmount(id, otherId))))
         )
       )
-
     Ok(JsObject(Seq("transactions" -> JsArray(transactionsJs))))
   }
+
+
 
 }
 
