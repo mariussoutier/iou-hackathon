@@ -46,8 +46,8 @@ object Transaction extends ModelCompanion[Transaction, ObjectId] {
   def totalAmount(from: ObjectId, to: ObjectId) = {
     val iGaveHim: Seq[Transaction] = dao.find(MongoDBObject("from" -> from, "to" -> to)).toSeq
     val heGaveMe: Seq[Transaction] = dao.find(MongoDBObject("from" -> to, "to" -> from)).toSeq
-    val iGaveHimAmount = iGaveHim.map(_.amount).reduce((tx1, tx2) => tx1 + tx2)
-    val heGaveMeAmount = heGaveMe.map(_.amount).reduce((tx1, tx2) => tx1 + tx2)
+    val iGaveHimAmount = iGaveHim.map(_.amount).fold(BigDecimal(0.0))((tx1, tx2) => tx1 + tx2)
+    val heGaveMeAmount = heGaveMe.map(_.amount).fold(BigDecimal(0.0))((tx1, tx2) => tx1 + tx2)
     max(iGaveHimAmount.toDouble, heGaveMeAmount.toDouble) - min(iGaveHimAmount.toDouble, heGaveMeAmount.toDouble)
   }
 }
