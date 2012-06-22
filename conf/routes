@@ -14,6 +14,7 @@ GET     /users/phone                  controllers.Users.userByPhone(phone: Strin
 #POST    /users                       controllers.Users.createUser()
 
 # Transactions
+GET     /users/:id/summaries         controllers.Transactions.summaries(id: ObjectId)
 GET     /users/:id/debts/summary      controllers.Transactions.summaries(id: ObjectId)
 #GET     /debts/:id
 GET     /transactions/:user1/:user2         controllers.Transactions.txForIds(user1: ObjectId, user2: ObjectId)
