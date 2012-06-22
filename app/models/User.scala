@@ -22,6 +22,7 @@ object User extends ModelCompanion[User, ObjectId] {
   val dao = new SalatDAO[User, ObjectId](collection = collection) {}
 
   def findByEMail(email: String): Option[User] = dao.findOne(MongoDBObject("email" -> email))
+  def findByPhone(phone: String): Option[User] = dao.findOne(MongoDBObject("phone" -> phone))
 }
 
 

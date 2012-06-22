@@ -3,24 +3,20 @@
 # ~~~~
 
 # Home page
-GET     /                                 controllers.Application.index
+GET     /                             controllers.Application.index
 
 # Users
-GET     /users/dummy                        controllers.Users.dummyUser()
-GET     /users/:id                          controllers.Users.userById(id: ObjectId)
-
-GET     /users/:id/debts/summary            controllers.Transactions.summaries(id: ObjectId)
-#GET     /users/:id/debts/detailed
-#GET     /debts/:id
-#POST    /users
-
-#GET     /users                              controllers.Users.find(email: Option[String], telephone: Option[String])
-#GET     /users/email                       controllers.Users.findByEmail(email: String)
-#GET     /users/phone                       controllers.Users.findByPhone(phone: String)
-#GET     /users/facebook                    controllers.Users.findByFacebook(fbToken: String)
+GET     /users/dummy                  controllers.Users.dummyUser()
+GET     /users/:id                    controllers.Users.userById(id: ObjectId)
+GET     /users/email                  controllers.Users.userByEmail(email: String)
+GET     /users/phone                  controllers.Users.userByPhone(phone: String)
+#GET     /users/facebook              controllers.Users.findByFacebook(fbToken: String)
+#POST    /users                       controllers.Users.createUser()
 
 # Transactions
-#GET     /transactions/:user1/:user2         controllers.Transactions.txForIds(user1: ObjectId, user2: ObjectId)
+GET     /users/:id/debts/summary      controllers.Transactions.summaries(id: ObjectId)
+#GET     /debts/:id
+GET     /transactions/:user1/:user2         controllers.Transactions.txForIds(user1: ObjectId, user2: ObjectId)
 #POST    /transactions
 
 # Map static resources from the /public folder to the /assets URL path

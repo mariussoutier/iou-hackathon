@@ -36,6 +36,10 @@ object Transaction extends ModelCompanion[Transaction, ObjectId] {
   def findByUser(userId: ObjectId) =
     dao.find(MongoDBObject("from" -> userId)).toSeq ++ dao.find(MongoDBObject("to" -> userId)).toSeq
 
+  def transactionsForUsers(user1: ObjectId, user2: ObjectId) =
+    dao.find(MongoDBObject("from" -> user1, "to" -> user2)).toSeq ++
+    dao.find(MongoDBObject("from" -> user2, "to" -> user1)).toSeq
+
   def transactedWith(userId: ObjectId): Set[ObjectId] = {
     val usersTransactions = Transaction.findByUser(userId)
     val froms = usersTransactions.map(_.from).filter(_ != userId).toSet

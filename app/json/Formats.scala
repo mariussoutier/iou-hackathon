@@ -21,4 +21,23 @@ object Formats {
   }
 
   //implicit val UserReads = new Reads[User]
+
+  implicit def TransactionWrites = new Writes[models.Transaction] {
+    def writes(tx: models.Transaction): JsValue = {
+      JsObject(Seq(
+        ("id", JsString(tx.id.toString)),
+        ("subject", JsString(tx.subject)),
+        ("amount", JsNumber(tx.amount)),
+        ("currency", JsString(tx.currency)),
+        ("from", JsString(tx.from.toString)),
+        ("to", JsString(tx.to.toString)),
+        ("created", JsNumber(tx.created.getTime)),
+        ("longitude", JsNumber(tx.longitude.map(BigDecimal(_)).getOrElse(BigDecimal(0.0)))),
+        ("latitude", JsNumber(tx.latitude.map(BigDecimal(_)).getOrElse(BigDecimal(0.0)))),
+        ("locationName", JsString(tx.locationName.getOrElse("")))
+      ))
+    }
+  }
+
+  //implicit val TransactionReads[Transaction]
 }

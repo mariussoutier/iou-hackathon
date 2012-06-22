@@ -27,4 +27,22 @@ object Users extends Controller {
     }.getOrElse(NotFound)
   }
 
+  def userByEmail(email: String) = Action {
+    User.findByEMail(email).map { user =>
+      Ok(Json.toJson(user))
+    }.getOrElse(NotFound)
+  }
+
+  def userByPhone(phone: String) = Action {
+    User.findByPhone(phone).map { user =>
+      Ok(Json.toJson(user))
+    }.getOrElse(NotFound)
+  }
+
+  /*def createUser() = Action(parse.json) { request =>
+    val user: User = Json.fromJson[User](request.body)
+    User.save(user)
+    Ok(user.id.toString)
+  }*/
+
 }
