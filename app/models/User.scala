@@ -20,7 +20,7 @@ case class User(
     else firstName.orElse(lastName).getOrElse("")
 }
 
-object User extends ModelCompanion[User, ObjectId] {
+object User extends ModelCompanion[User, ObjectId] with SalatContext {
   val collection = mongoCollection("users")
   val dao = new SalatDAO[User, ObjectId](collection = collection) {}
 

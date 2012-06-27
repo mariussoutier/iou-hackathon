@@ -28,7 +28,7 @@ case class Transaction(
   def toUser: Option[User] = User.findOneById(to)
 }
 
-object Transaction extends ModelCompanion[Transaction, ObjectId] {
+object Transaction extends ModelCompanion[Transaction, ObjectId] with SalatContext {
   val collection = mongoCollection("transactions")
   val dao = new SalatDAO[Transaction, ObjectId](collection = collection) {}
 
