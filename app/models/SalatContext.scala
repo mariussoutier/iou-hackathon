@@ -5,10 +5,11 @@ trait SalatContext {
     import com.novus.salat._
     import play.api.Play
     import play.api.Play.current
-    val c = new Context {
+    val context = new Context {
       val name = "play-salat-context"
     }
-    c.registerClassLoader(Play.current.classloader)
-    c
+    context.registerClassLoader(Play.current.classloader)
+    context.registerGlobalKeyOverride(remapThis = "id", toThisInstead = "_id")
+    context
   }
 }
