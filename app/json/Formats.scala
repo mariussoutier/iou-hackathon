@@ -7,8 +7,12 @@ import play.api.libs.json.Json._
 
 import models._
 
+/**
+* Type classes to serialize models to JSON.
+*/
 object Formats {
   implicit def UserWrites = new Writes[User] {
+    println("I got created")
     def writes(user: User): JsValue = {
       JsObject(fields = Seq(
         ("id", JsString(user.id.toString)),
@@ -20,7 +24,16 @@ object Formats {
     }
   }
 
-  //implicit val UserReads = new Reads[User]
+  implicit val UserReads = new Reads[User] {
+    def reads(js: JsValue): User = {
+      User(
+        email = Some("TODO"),
+        phone = Some("TODO"),
+        firstName = Some("TODO"),
+        lastName = Some("TODO")
+      )
+    }
+  }
 
   implicit def TransactionWrites = new Writes[models.Transaction] {
     def writes(tx: models.Transaction): JsValue = {
