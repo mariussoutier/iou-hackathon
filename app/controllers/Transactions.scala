@@ -29,6 +29,12 @@ object Transactions extends Controller {
     Ok(JsObject(Seq("summaries" -> JsArray(transactionsJs))))
   }
 
+  def txForId(id: ObjectId) = Action { implicit request =>
+    Transaction.findOneById(id).map { tx =>
+      Ok(toJson(tx))
+    }.getOrElse(NotFound)
+  }
+
   def txForIds(user1: ObjectId, user2: ObjectId) = Action { implicit request =>
     // TODO Return NotFound if any of the users does not exists
     val transactionsJs = Transaction.transactionsForUsers(user1, user2).map(toJson(_))

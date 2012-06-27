@@ -16,8 +16,8 @@ GET     /users/phone                  controllers.Users.userByPhone(phone: Strin
 # Transactions
 GET     /users/:id/summaries          controllers.Transactions.summaries(id: ObjectId)
 GET     /users/:id/debts/summary      controllers.Transactions.summaries(id: ObjectId)
-#GET     /debts/:id
-GET     /transactions/:user1/:user2         controllers.Transactions.txForIds(user1: ObjectId, user2: ObjectId)
+GET     /transactions/:id             controllers.Transactions.txForId(id: ObjectId)
+GET     /transactions/:user1/:user2   controllers.Transactions.txForIds(user1: ObjectId, user2: ObjectId)
 #POST    /transactions
 
 # Map static resources from the /public folder to the /assets URL path
